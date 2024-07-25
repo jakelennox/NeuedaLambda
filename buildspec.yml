@@ -1,0 +1,18 @@
+version: 0.2    
+phases:
+    install:
+        runtime-versions:
+          dotnet: latest
+        commands:
+          - dotnet tool install -g AWS.CodeArtifact.NuGet.CredentialProvider
+          - dotnet codeartifact-creds install
+    #pre_build:
+        #commands:
+        #  - set ASPNETCORE_ENVIRONMENT=$ENV
+    build:
+        commands:
+          - dotnet restore NeuedaLambda.sln
+          - dotnet build NeuedaLambda.sln
+artifacts:
+    files:
+        - '**/*'
